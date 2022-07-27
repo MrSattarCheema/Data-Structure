@@ -46,16 +46,28 @@ class Node{
 
 int main(){
 
-    Node *head=new Node(2);
+
+Node *head;
 
     Node *n1=new Node(3);
 
-    cout<<head->getData();
-
-    Node *ptr=head;
-
-    head->setNext(n1);
+    head=n1;
 
     cout<<head->getData();
+
+    Node *n2 = new Node(5);
+
+    n1->setNext(n2);
+
+    cout<<n1->getNext()->getData();
+
+
+
+
+
+
+
+
+
 
 }
