@@ -41,6 +41,9 @@ class LinkedList{
     LinkedList(){
         head=NULL;
     }
+    Node* FirstElement(){
+        return head;
+    }
     bool isEmpty(){
         if(head==NULL){
             return true;
@@ -159,6 +162,38 @@ class LinkedList{
             delete temp2;
         }
     }
+    void reverse(){
+        Node* current,* next,* prev;
+        current=head;
+        prev=NULL;
+        while(current!=NULL){
+            next=current->getNext();
+            current->setNext(prev);
+            prev=current;
+            current=next;
+        }
+        head=prev;
+    }
+    void printReverse(Node* head){        //Using Recursion Reveres Print
+        if(head==NULL) return;
+        printReverse(head->getNext());
+        cout<<"\n"<<head->getData();
+    }
+    void reverseRec(Node* h){
+        if(h==NULL){
+            return;
+        }
+        reverseRec(h->getNext());
+        // cout<<"\n"<<h->getData();
+        if(h->getNext()==NULL){
+            head=h;
+            return;
+        }
+        Node* temp=h->getNext();
+        temp->setNext(h);
+        h->setNext(NULL);
+        
+    }
 };
 int main(){
     LinkedList l;
@@ -175,5 +210,14 @@ int main(){
     l.deleteFromStart();
     l.deleteFromEnd();
     l.deleteFrom_NthPos(1);
+    l.print();
+    cout<<"\nAfter Reversing LinkedList";
+    l.reverse();
+    l.print();
+    cout<<"\nReverse Print";
+    Node *head=l.FirstElement();
+    l.printReverse(head);
+    cout<<"\nReverse LinkedList using recursion";
+    l.reverseRec(head);
     l.print();
 }
