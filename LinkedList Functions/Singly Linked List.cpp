@@ -179,20 +179,19 @@ class LinkedList{
         printReverse(head->getNext());
         cout<<"\n"<<head->getData();
     }
-    void reverseRec(Node* h){
+    void reverseRec(Node* h){             //Using Recursion reverse linked list
         if(h==NULL){
             return;
         }
-        reverseRec(h->getNext());
-        // cout<<"\n"<<h->getData();
         if(h->getNext()==NULL){
             head=h;
             return;
         }
-        Node* temp=h->getNext();
-        temp->setNext(h);
+        reverseRec(h->getNext());
+        // Node* temp=h->getNext();
+        // temp->setNext(h);
+        h->getNext()->setNext(h);
         h->setNext(NULL);
-        
     }
 };
 int main(){
